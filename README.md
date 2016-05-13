@@ -67,5 +67,3 @@ This is the procedure for updating the fixture files after adding dummy data to 
     - Set PostingTime and StartTime to current time
     - Set EndTime to five days from current time
 
-
-
