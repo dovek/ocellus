@@ -13,10 +13,21 @@ If you know M-BoF, you don't need to know anything else.
    - `bower install`
 
 # Development
-0. Initialize and start app server
+0. Prepare the application configuration
+    - `cd /vagrant/hacks_mbof`
+    - `cp settings.py.template settings.py`
+    - Edit `settings.py` to set various values:
+        - `SECRET_KEY`? _(How?  What should the value be?)_
+        - `DATABASES['default']['USER']`?  _(What should the DB params be?  Use values from Vagrantfile?  The template file should contain usable default values, appropriate for development purposes.)_
+        - `DATABASES['default']['PASSWORD']`?
+        - `DATABASES['default']['HOST']`?
+        - `DATABASES['default']['PORT']`?
+0. Initialize the database
     - `cd /vagrant`
     - `python manage.py migrate`
     - `python manage.py loaddata mbof/fixtures/dev_data.json`
+0. Start the applocation server
+    - `cd /vagrant`
     - Run the development app server
         - _**Without**_ remote user specified
             - `python manage.py runserver`
