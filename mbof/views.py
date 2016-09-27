@@ -22,7 +22,7 @@ def logout(request):
 
 
 def log_action(request):
-    me = request.user.__str__()
+    me = request.user.username
     method = request.META['REQUEST_METHOD']
     url = request.META['PATH_INFO']
     # EXAMPLE - dovek : GET /api/events/current/
@@ -51,7 +51,7 @@ class EventViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         log_action(self.request)
-        serializer.save(owner=self.request.user.__str__())
+        serializer.save(owner=self.request.user.username)
 
 
 class EventListViewSet(generics.ListCreateAPIView):
@@ -83,7 +83,7 @@ class EventListViewSet(generics.ListCreateAPIView):
         #     return Event.objects.all().order_by('postingTime')
 
         for event in query_set:
-            if event.owner == self.request.user.__str__():
+            if event.owner == self.request.user.username:
                 event.owner = True
             else:
                 event.owner = False
@@ -108,7 +108,7 @@ class IntentionViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         log_action(self.request)
-        serializer.save(respondent=self.request.user.__str__())
+        serializer.save(respondent=self.request.user.username)
 
     def filter_queryset(self, queryset):
         log_action(self.request)
@@ -117,7 +117,7 @@ class IntentionViewSet(viewsets.ModelViewSet):
         event = self.request.query_params.get('event', None)
         if username is not None:
             if username == 'self':
-                queryset = queryset.filter(respondent=self.request.user.__str__())
+                queryset = queryset.filter(respondent=self.request.user.username)
             else:
                 queryset = queryset.filter(respondent=username)
         if event is not None:
