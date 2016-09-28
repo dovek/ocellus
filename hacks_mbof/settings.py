@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 from os import getenv
+from os import path
+import saml2
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import sys
@@ -201,8 +203,6 @@ AUTHENTICATION_BACKENDS = (
 LOGIN_URL = '%slogin/' % SAML2_URL_PATH
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-from os import path
-import saml2
 BASEDIR = path.dirname(path.abspath(__file__))
 SAML_CONFIG = {
   'xmlsec_binary': '/usr/bin/xmlsec1',
