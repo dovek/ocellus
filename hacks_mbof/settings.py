@@ -115,6 +115,11 @@ DATABASES = {
     }
 }
 
+if getenv('DJANGO_DB_ENGINE') == 'django.db.backends.mysql':
+    print DATABASES.get('default').viewkeys()
+else:
+    print 'Hello'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
