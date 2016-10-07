@@ -112,14 +112,18 @@ DATABASES = {
         'PASSWORD': getenv('DJANGO_DB_PASSWORD', ''),
         'HOST': getenv('DJANGO_DB_HOST', ''),
         'PORT': getenv('DJANGO_DB_PORT', ''),
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+        },
     }
 }
 
-if getenv('DJANGO_DB_ENGINE') == 'django.db.backends.mysql':
-    print 'bonjour'
-    print DATABASES.get('default').viewkeys()
-else:
-    print 'Hello'
+# if getenv('DJANGO_DB_ENGINE') == 'django.db.backends.mysql':
+#     print 'bonjour'
+#     print DATABASES.get('default').viewkeys()
+#     DATABASES.get('default').setdefault('OPTIONS')
+# else:
+#     print 'Hello'
 
 
 # Password validation
