@@ -116,6 +116,7 @@ DATABASES = {
 }
 
 if getenv('DJANGO_DB_ENGINE') == 'django.db.backends.mysql':
+    print 'bonjour'
     print DATABASES.get('default').viewkeys()
 else:
     print 'Hello'
